@@ -181,14 +181,32 @@ section { position: relative; z-index: 2; }
 .stat-val { font-family: 'Space Grotesk', sans-serif; font-size: 1.5rem; font-weight: 700; background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
 .stat-label { font-size: 0.72rem; color: var(--text3); font-weight: 500; text-transform: uppercase; letter-spacing: 0.04em; }
 .hero-photo-wrap { animation: fadeUp 0.7s ease 0.3s both; }
- .hero-photo {
+ .hero-photo-wrap {
+    animation: fadeUp 0.7s ease 0.3s both;
+}
+
+.hero-photo {
     width: 280px;
     height: 280px;
     border-radius: 50%;
     overflow: hidden;
     border: 4px solid #C9735F;
-    box-shadow: 0 0 30px rgba(201,115,95,0.4);
-    background: transparent;
+    background: var(--bg3);
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 40px var(--glow-purple);
+}
+
+.hero-photo::before {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    border-radius: 50%;
+    background: var(--grad);
+    z-index: -1;
+    animation: rotate 5s linear infinite;
 }
 
 .hero-photo img {
@@ -197,38 +215,15 @@ section { position: relative; z-index: 2; }
     object-fit: cover;
     display: block;
 }
-  border: 1px solid var(--border2);
-  background: var(--bg3);
-  display: flex; align-items: center; justify-content: center;
-  position: relative; overflow: hidden;
-  box-shadow: 0 0 40px var(--glow-purple);
-}
-.hero-photo::before {
-  content: ''; position: absolute; inset: -1px;
-  background: var(--grad); z-index: -1; border-radius: 25px;
-  animation: rotate 4s linear infinite;
-}
-@keyframes rotate { from{transform:rotate(0)} to{transform:rotate(360deg)} }
-.photo-initials {
-  font-family: 'Space Grotesk', sans-serif; font-size: 4rem; font-weight: 800;
-  background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-}
-.hero-social-strip { display: flex; gap: 0.5rem; margin-top: 1rem; justify-content: center; }
-@keyframes fadeUp { from { opacity:0; transform:translateY(20px); } to { opacity:1; transform:translateY(0); } }
 
-/* SECTION COMMON */
-.section-wrap { max-width: 1200px; margin: 0 auto; padding: 5rem 2rem; }
-.section-eyebrow {
-  display: inline-flex; align-items: center; gap: 0.5rem;
-  color: #C9735F; font-size: 0.8rem; font-weight: 700; letter-spacing: 0.1em;
-  text-transform: uppercase; margin-bottom: 0.75rem;
+@keyframes rotate {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
 }
-.section-eyebrow::before { content: ''; width: 24px; height: 2px; background: var(--blue); display: block; }
-.section-title { font-family: 'Space Grotesk', sans-serif; font-size: clamp(1.75rem, 4vw, 2.75rem); font-weight: 700; margin-bottom: 1rem; }
-.section-title .grad { background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-.section-desc { color: var(--text2); max-width: 600px; line-height: 1.7; margin-bottom: 3rem; }
-.section-divider { width: 60px; height: 3px; background: var(--grad); border-radius: 10px; margin-bottom: 3rem; }
-
 /* GLASS CARD */
 .glass {
   background: var(--surface);
@@ -426,7 +421,11 @@ footer { background: var(--bg); border-top: 1px solid var(--border); padding: 3r
 /* MOBILE */
 @media (max-width: 900px) {
   .hero-inner { grid-template-columns: 1fr; }
-  .hero-photo-wrap { display: none; }
+  .hero-photo-wrap {
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
+}
   .about-grid, .resume-inner, .contact-grid { grid-template-columns: 1fr; }
   .about-values { grid-template-columns: 1fr; }
   .form-row { grid-template-columns: 1fr; }
@@ -453,6 +452,34 @@ footer { background: var(--bg); border-top: 1px solid var(--border); padding: 3r
     margin: 0 auto;
   }
 
+}
+@media (max-width: 768px) {
+
+    .hero-photo-wrap {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        justify-content: center !important;
+        gap: 15px;
+        width: 100%;
+    }
+
+    .hero-social-strip {
+        justify-content: center;
+    }
+
+    .hero-photo-wrap > div:last-child {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .open-badge {
+        width: auto;
+        min-width: 220px;
+        justify-content: center;
+    }
 }
 </style>
 </head>
